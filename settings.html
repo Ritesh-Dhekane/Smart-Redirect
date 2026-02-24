@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings</title>
+
+<style>
+body {
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:linear-gradient(135deg,#11998e,#38ef7d);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.card {
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  width:100%;
+  max-width:420px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+input {
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+
+button {
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  background:#11998e;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover { opacity:0.9; }
+
+.hidden { display:none; }
+
+.link-box {
+  margin-top:15px;
+  background:#f4f4f4;
+  padding:10px;
+  border-radius:8px;
+  word-break:break-all;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="loginCard">
+  <h2>Admin Login</h2>
+  <input type="password" id="password" placeholder="Enter Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div class="card hidden" id="settingsCard">
+  <h2>Redirect Settings</h2>
+  <input type="text" id="android" placeholder="Android App Link">
+  <input type="text" id="ios" placeholder="iOS App Link">
+  <input type="text" id="web" placeholder="Web Portal Link">
+  <button onclick="saveLinks()">Save & Generate Link</button>
+  <div class="link-box" id="generatedLink"></div>
+</div>
+
+<script>
+function login(){
+  const pass = document.getElementById("password").value;
+  if(pass === "Admin@123"){
+    document.getElementById("loginCard").classList.add("hidden");
+    document.getElementById("settingsCard").classList.remove("hidden");
+  } else {
+    alert("Wrong password");
+  }
+}
+
+function saveLinks(){
+  const android = document.getElementById("android").value;
+  const ios = document.getElementById("ios").value;
+  const web = document.getElementById("web").value;
+
+  localStorage.setItem("androidLink", android);
+  localStorage.setItem("iosLink", ios);
+  localStorage.setItem("webLink", web);
+
+  const baseURL = window.location.origin + "/index.html";
+  document.getElementById("generatedLink").innerText =
+    "Share this link:\n" + baseURL;
+}
+</script>
+
+</body>
+</html>
