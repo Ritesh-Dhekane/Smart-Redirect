@@ -98,9 +98,17 @@ function detectDevice() {
 const device = detectDevice();
 document.getElementById("device").innerText = device;
 
-const androidLink = localStorage.getItem("androidLink") || "#";
-const iosLink = localStorage.getItem("iosLink") || "#";
-const webLink = localStorage.getItem("webLink") || "#";
+const androidLink =
+  localStorage.getItem("androidLink") ||
+  "https://play.google.com/store/apps/details?id=com.whatsapp";
+
+const iosLink =
+  localStorage.getItem("iosLink") ||
+  "https://apps.apple.com/app/whatsapp-messenger/id310633997";
+
+const webLink =
+  localStorage.getItem("webLink") ||
+  "https://web.whatsapp.com/";
 
 let redirectURL = "";
 let label = "";
